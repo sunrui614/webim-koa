@@ -1256,7 +1256,7 @@ const senderPopulateFields = {
 exports.senderPopulateFields = senderPopulateFields;
 */
 exports.addGroupMessage =
-function addGroupMessage(sender, groupId, content, time){
+async function addGroupMessage(sender, groupId, content, time){
     var group = await models.groupModel.findById({
         _id: groupId
     }).exec(); 
@@ -1312,7 +1312,7 @@ function getUnreadGroupMessages(userId) {
 }
 
 exports.setGroupMessagesRead =
-function setGroupMessagesRead (receiverId, groupMessageIds) {
+async function setGroupMessagesRead (receiverId, groupMessageIds) {
     // Use transaction for update 
    var session = await models.groupMessageModel.startSession();
    session.startTransaction();
@@ -1366,7 +1366,7 @@ function getGroupById (groupId) {
 }
 
 exports.setGroupMessagesReadFrom =
-function setGroupMessagesReadFrom (_idSelf, groupId) {
+async function setGroupMessagesReadFrom (_idSelf, groupId) {
     // Use transaction for update 
    var session = await models.groupMessageModel.startSession();
    session.startTransaction();
